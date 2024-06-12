@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import userRoutes from "./routes/userRoutes.js"
 
 const app = express();
 
@@ -16,8 +17,9 @@ const connect = async () => {
   }
 };
 
-//Routes
-//app.use("/api/auth", authRoute);
+//Routes                                                                      
+app.use('/api/users', userRoutes);
+
 
 app.listen(8000, () => {
    connect();
