@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
-import userRoutes from "./routes/userRoutes.js"
+import bodyParser from 'body-parser';
+import userRoutes from "./routes/userRoutes.js";
+import accountRoutes from './routes/accountRoutes.js';
 
 const app = express();
 
@@ -19,6 +21,7 @@ const connect = async () => {
 
 //Routes                                                                      
 app.use('/api/users', userRoutes);
+app.use('/api/accounts', accountRoutes);
 
 
 app.listen(8000, () => {
