@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
-import bodyParser from 'body-parser';
+import cors from 'cors';
 import userRoutes from "./routes/userRoutes.js";
 import accountRoutes from './routes/accountRoutes.js';
 
 const app = express();
+
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -19,12 +22,11 @@ const connect = async () => {
   }
 };
 
-//Routes                                                                      
+// Routes
 app.use('/api/users', userRoutes);
 app.use('/api/accounts', accountRoutes);
 
-
 app.listen(8000, () => {
-   connect();
-    console.log("Backend server is running!");
-  });
+  connect();
+  console.log("Backend server is running!");
+});
