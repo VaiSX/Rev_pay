@@ -2,15 +2,28 @@ import Account from '../models/Account.js';
 import mongoose from 'mongoose';
 
 const createAccount = async (req, res) => {
-  const { bankAccountNumber, sortCode } = req.body;
+  const { bankAccountNumber, sortCode, status, allowCredit, allowDebit, balance, dailyWithdrawalLimit } = req.body;
+  
   const userId = req.user.userId;
+
   try {
     const accountId = new mongoose.Types.ObjectId().toString();
-    const account = new Account({ userId, accountId, bankAccountNumber, sortCode });
+    const account = new Account({ userId, accountId, bankAccountNumber, sortCode , status , allowCredit, allowDebit, balance, dailyWithdrawalLimit });
     await account.save();
     res.status(201).json(account);
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+};
+
+ const getAccounts = async (req, res) => {
+  const userId = req.user.Id;
+
+  try {
+    const accounts = await Account.find({ userId });
+    res.status(200).json(accounts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -68,4 +81,4 @@ const getBalance = async (req, res) => {
   }
 };
 
-export { createAccount, deposit, withdraw, getBalance };
+export { createAccount, deposit, withdraw, getBalance , getAccounts};

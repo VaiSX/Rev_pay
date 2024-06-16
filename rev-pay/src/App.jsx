@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-
+import CreateAccount from './pages/CreateAccount';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -23,7 +24,8 @@ function App() {
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage setToken={setToken} />} />
-            
+            <Route path="/dashboard" element={<DashboardPage token={token} />} />
+            <Route path="/create-account" element={<CreateAccount token={token} />} />
           </Routes>
         </main>
       </div>

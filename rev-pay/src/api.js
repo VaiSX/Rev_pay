@@ -15,7 +15,7 @@ export const getAccounts = (token) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 export const getAccountBalance = (accountId, token) =>
-  api.get(`/accounts/${accountId}/balance`, {
+  api.get(`/accounts/balance/${accountId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 export const createTransaction = (data, token) =>
